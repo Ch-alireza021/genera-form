@@ -1,5 +1,5 @@
 import "./App.css";
-import { Sform } from "./components/SForm/Sform";
+import { CForm } from "./components/SForm/Cform";
 
 // interface SFormIF {
 
@@ -12,17 +12,22 @@ function App() {
       type: "text",
       label: "amir",
       placeholder: "amir",
-      onChange: (e:string) => {
+      onChange: (e: string) => {
         // console.log({ e });
       },
-      error: { min: 5, max: 10, required: true, fn: () => {}, T: "error?" },
+      error: { min: 5, max: 10, required: true, },
     },
-   {
+    {
       name: "phone",
       type: "number",
-      error: { regex: ["^[0-9]{11}$", "شماره موبایل باید 11 رقم باشد"],}
+      error: { regex: ["^[0-9]{11}$", "شماره موبایل باید 11 رقم باشد"] },
     },
   ];
+
+  const config={
+    btnText:'ثبت',
+    btnClass:'btn'
+  }
 
   const submithandler = (formValues: { [key: string]: string }) => {
     console.log({ formValues });
@@ -30,7 +35,7 @@ function App() {
 
   return (
     <>
-      <Sform {...{ form, submithandler }} />
+      <CForm {...{ form, submithandler,config }} />
     </>
   );
 }
