@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, FC, useEffect, useRef, useState } from "react";
 import { ConfigFormIF, FormCForm, onSubmite, StringObject } from "./base";
 import fromStyle from "./style/ButtonForm.module.css";
 import { gridColumn } from "./helpers";
@@ -11,11 +11,24 @@ interface CformIF {
 export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
   const [formValues, setFormValues] = useState<StringObject>({});
   const [formError, setFormError] = useState<StringObject>({});
+  const [width, setWidth] = useState<number>(0);
+  const divRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const updateWidth = () => {
+      if (divRef.current) {
+        setWidth(divRef.current.offsetWidth);
+      }
+    };
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => {
+      window.removeEventListener('resize', updateWidth);
+    };
+  }, []);
   let column = 0;
-
   return (
     <>
-      <div className={`${fromStyle?.grid}`}>
+      <div className={`${fromStyle?.grid}`} ref={divRef}>
         {form?.map((ele, i) => {
           const change = (e: ChangeEvent<HTMLInputElement>) => {
             const value = e.target.value;
@@ -29,7 +42,7 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
             column: newColumn,
           } = gridColumn({
             size: ele?.size,
-            display: "l",
+            width: width,
             column,
           });
           column = newColumn;
@@ -51,6 +64,7 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
                 placeholder={ele?.placeholder}
                 onChange={(e) => change(e)}
                 style={{ borderColor: formError?.[ele.name] ? "red" : "" }}
+                className={`${fromStyle?.input}`}
               />
               {error && <div style={{ color: "red" }}>{error}</div>}
             </div>

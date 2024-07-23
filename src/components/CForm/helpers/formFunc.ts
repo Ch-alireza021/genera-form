@@ -1,12 +1,15 @@
 export const gridColumn = ({
   size,
-  display,
+  width,
   column,
 }: {
   size?: string;
-  display: string;
+  width: number;
   column: number;
 }): { column: number; gridColumnEnd: number; gridColumnStart: number } => {
+    console.log({width})
+    const display = width < 600 ? "s" : width < 900 ? "m" : "l";
+    console.log({display})
   const regex = new RegExp(`(${display})(\\d+)`);
   const match = size?.match(regex);
   const setdisplay = Number(match ? parseInt(match[2], 10) : 12);
