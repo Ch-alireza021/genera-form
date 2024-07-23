@@ -1,5 +1,5 @@
 import "./App.css";
-import { CForm } from "./components/SForm/Cform";
+import { CForm } from "./components/CForm/Cform";
 
 // interface SFormIF {
 
