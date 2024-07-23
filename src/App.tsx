@@ -15,11 +15,13 @@ function App() {
       onChange: (e: string) => {
         // console.log({ e });
       },
+      size:'s12 m6 l4',
       error: { min: 5, max: 10, required: true, },
     },
     {
       name: "phone",
       type: "number",
+      size:'s12 m6 l4',
       error: { regex: ["^[0-9]{11}$", "شماره موبایل باید 11 رقم باشد"] },
     },
   ];
