@@ -32,7 +32,10 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
       <div
         className={`${fromStyle?.grid}`}
         ref={divRef}
-        style={{ direction: direction }}
+        style={{
+          direction: direction,
+          fontSize: `${config?.fontSize || ""}px`,
+        }}
       >
         {form?.map((ele, i) => {
           const change = (e: ChangeEvent<HTMLInputElement>) => {
@@ -59,10 +62,11 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
                 gridColumnStart,
                 gridColumnEnd,
                 direction: ele?.dir
-                  ? ele?.dir === ('ltr'||'rtl')
+                  ? ele?.dir === ("ltr" || "rtl")
                     ? "ltr"
                     : "rtl"
                   : direction,
+                  fontSize: `${ele?.fontSize || config?.fontSize || ""}px`,
               }}
               className={`${fromStyle?.column}`}
             >
@@ -72,7 +76,10 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
                 type={ele?.type}
                 placeholder={ele?.placeholder}
                 onChange={(e) => change(e)}
-                style={{ borderColor: formError?.[ele.name] ? "red" : "" }}
+                style={{
+                  borderColor: formError?.[ele.name] ? "red" : "",
+                  fontSize: `${ele?.fontSize || config?.fontSize || ""}px`,
+                }}
                 className={`${fromStyle?.input}`}
               />
               {error && <div style={{ color: "red" }}>{error}</div>}

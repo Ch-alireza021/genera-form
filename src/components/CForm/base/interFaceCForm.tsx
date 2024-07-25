@@ -12,6 +12,7 @@ export interface FormCForm {
     max?: number;
     required?: boolean; 
   };
+  fontSize?:number
   
 }
 
@@ -23,6 +24,7 @@ export interface ConfigFormIF {
   btnClass?: string;
   btnStyle?: any;
   dir?:string;
+  fontSize?:number
   // dir?: "ltr" | "rtl" ;
   
 }
