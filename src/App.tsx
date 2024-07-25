@@ -6,7 +6,7 @@ function App() {
     {
       name: "fname",
       type: "text",
-      label: "نام ",
+      label: { name: "نام ", style: { padding: "20px" } },
       placeholder: "امیر",
       onChange: (e: any) => {
         console.log({ e });
@@ -17,7 +17,7 @@ function App() {
       // dir:'ltr'
     },
     {
-      label: "نام ",
+      label: { name: "نام ", style: { padding: "20px" } },
       name: "phone",
       type: "number",
       size: "s12 m6 l4",
@@ -47,6 +47,7 @@ function App() {
     btnText: "ثبت",
     btnClass: "btn",
     dir: "rtl",
+    inputStyle: { borderRadius: "50px" },
     // fontSize: 30,
   };
 

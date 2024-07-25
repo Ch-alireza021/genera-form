@@ -2,18 +2,17 @@ export interface FormCForm {
   size?: string;
   name: string;
   type: string;
-  label?: string;
+  label?: { name: string; style?: React.CSSProperties };
   placeholder?: string;
-  dir?:string;
+  dir?: string;
   onChange?: (e: StringObject) => void;
   error?: {
-    regex?: any; 
+    regex?: any;
     min?: number;
     max?: number;
-    required?: boolean; 
+    required?: boolean;
   };
-  fontSize?:number
-  
+  fontSize?: number;
 }
 
 export interface StringObject {
@@ -23,8 +22,8 @@ export interface ConfigFormIF {
   btnText?: string;
   btnClass?: string;
   btnStyle?: any;
-  dir?:string;
-  fontSize?:number
+  dir?: string;
+  fontSize?: number;
+  inputStyle?: React.CSSProperties;
   // dir?: "ltr" | "rtl" ;
-  
 }

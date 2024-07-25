@@ -66,11 +66,16 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
                     ? "ltr"
                     : "rtl"
                   : direction,
-                  fontSize: `${ele?.fontSize || config?.fontSize || ""}px`,
+                fontSize: `${ele?.fontSize || config?.fontSize || ""}px`,
               }}
               className={`${fromStyle?.column}`}
             >
-              {ele?.label && <label htmlFor={ele.name}> {ele?.label}: </label>}
+              {ele?.label && (
+                <label style={ele?.label?.style} htmlFor={ele.name}>
+                  {" "}
+                  {ele?.label?.name}:{" "}
+                </label>
+              )}
               <input
                 id={ele.name}
                 type={ele?.type}
@@ -79,6 +84,7 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
                 style={{
                   borderColor: formError?.[ele.name] ? "red" : "",
                   fontSize: `${ele?.fontSize || config?.fontSize || ""}px`,
+                  ...config?.inputStyle,
                 }}
                 className={`${fromStyle?.input}`}
               />
