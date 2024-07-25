@@ -13,6 +13,7 @@ export interface FormCForm {
     required?: boolean;
   };
   fontSize?: number;
+  style?: React.CSSProperties
 }
 
 export interface StringObject {

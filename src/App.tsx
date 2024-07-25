@@ -13,7 +13,8 @@ function App() {
       },
       size: "s12 m6 l4",
       error: { min: 5, max: 10, required: true },
-      fontSize: 30,
+      // fontSize: 30,
+      // style: { borderRadius: "50px" },
       // dir:'ltr'
     },
     {
@@ -47,7 +48,7 @@ function App() {
     btnText: "ثبت",
     btnClass: "btn",
     dir: "rtl",
-    inputStyle: { borderRadius: "50px" },
+    // inputStyle: { borderRadius: "50px" },
     // fontSize: 30,
   };
 

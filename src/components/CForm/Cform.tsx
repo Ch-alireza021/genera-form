@@ -85,6 +85,7 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
                   borderColor: formError?.[ele.name] ? "red" : "",
                   fontSize: `${ele?.fontSize || config?.fontSize || ""}px`,
                   ...config?.inputStyle,
+                  ...ele?.style,
                 }}
                 className={`${fromStyle?.input}`}
               />
