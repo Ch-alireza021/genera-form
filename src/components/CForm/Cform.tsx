@@ -25,7 +25,7 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
       window.removeEventListener('resize', updateWidth);
     };
   }, []);
-  let column = 0;
+  let column = 1;
   return (
     <>
       <div className={`${fromStyle?.grid}`} ref={divRef}>
@@ -51,11 +51,10 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
             <div
               key={ele.name + i}
               style={{
-                alignSelf: "end",
-                justifySelf:'center',
                 gridColumnStart,
                 gridColumnEnd,
               }}
+              className={`${fromStyle?.column}`}
             >
               {ele?.label && <label htmlFor={ele.name}> {ele?.label}: </label>}
               <input
