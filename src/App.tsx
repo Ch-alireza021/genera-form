@@ -12,8 +12,8 @@ function App() {
       type: "text",
       label: "amir",
       placeholder: "amir",
-      onChange: (e: string) => {
-        // console.log({ e });
+      onChange: (e: any) => {
+        console.log({ e });
       },
       size:'s12 m6 l4',
       error: { min: 5, max: 10, required: true, },
@@ -27,7 +27,7 @@ function App() {
     {
       name: "phone",
       type: "number",
-      size:'s12 m6 l4',
+      size:'s12 m6 l8',
       error: { regex: ["^[0-9]{11}$", "شماره موبایل باید 11 رقم باشد"] },
     },
     {
