@@ -71,9 +71,11 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
               className={`${fromStyle?.column}`}
             >
               {ele?.label && (
-                <label style={ele?.label?.style} htmlFor={ele.name}>
-                  {" "}
-                  {ele?.label?.name}:{" "}
+                <label
+                  style={{ ...config?.labelStyle, ...ele?.labelStyle }}
+                  htmlFor={ele.name}
+                >
+                  {ele?.label}:
                 </label>
               )}
               <input
@@ -85,7 +87,7 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
                   borderColor: formError?.[ele.name] ? "red" : "",
                   fontSize: `${ele?.fontSize || config?.fontSize || ""}px`,
                   ...config?.inputStyle,
-                  ...ele?.style,
+                  ...ele?.inputStyle,
                 }}
                 className={`${fromStyle?.input}`}
               />
