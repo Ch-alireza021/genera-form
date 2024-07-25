@@ -1,22 +1,21 @@
 import "./App.css";
 import { CForm } from "./components/CForm/Cform";
 
-// interface SFormIF {
 
-// }
 
 function App() {
   const form = [
     {
       name: "fname",
       type: "text",
-      label: "amir",
-      placeholder: "amir",
+      label: "نام ",
+      placeholder: "امیر",
       onChange: (e: any) => {
         console.log({ e });
       },
       size:'s12 m6 l4',
       error: { min: 5, max: 10, required: true, },
+      // dir:'ltr'
     },
     {
       name: "phone",
@@ -46,7 +45,8 @@ function App() {
 
   const config={
     btnText:'ثبت',
-    btnClass:'btn'
+    btnClass:'btn',
+    // dir:'ltr'
   }
 
   const submithandler = (formValues: { [key: string]: string }) => {

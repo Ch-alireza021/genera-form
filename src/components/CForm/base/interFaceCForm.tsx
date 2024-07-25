@@ -4,21 +4,25 @@ export interface FormCForm {
   type: string;
   label?: string;
   placeholder?: string;
+  dir?:string;
   onChange?: (e: StringObject) => void;
   error?: {
-    regex?: any; // made optional
+    regex?: any; 
     min?: number;
     max?: number;
-    required?: boolean; // changed Boolean to boolean
+    required?: boolean; 
   };
+  
 }
-
 
 export interface StringObject {
   [key: string]: string;
 }
 export interface ConfigFormIF {
-  btnText?:string;
-  btnClass?:string;
-  btnStyle?:any
+  btnText?: string;
+  btnClass?: string;
+  btnStyle?: any;
+  dir?:string;
+  // dir?: "ltr" | "rtl" ;
+  
 }

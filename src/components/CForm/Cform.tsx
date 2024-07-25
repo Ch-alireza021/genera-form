@@ -20,15 +20,20 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
       }
     };
     updateWidth();
-    window.addEventListener('resize', updateWidth);
+    window.addEventListener("resize", updateWidth);
     return () => {
-      window.removeEventListener('resize', updateWidth);
+      window.removeEventListener("resize", updateWidth);
     };
   }, []);
   let column = 1;
+  const direction = config?.dir === "ltr" ? "ltr" : "rtl";
   return (
     <>
-      <div className={`${fromStyle?.grid}`} ref={divRef}>
+      <div
+        className={`${fromStyle?.grid}`}
+        ref={divRef}
+        style={{ direction: direction }}
+      >
         {form?.map((ele, i) => {
           const change = (e: ChangeEvent<HTMLInputElement>) => {
             const value = e.target.value;
@@ -53,6 +58,11 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
               style={{
                 gridColumnStart,
                 gridColumnEnd,
+                direction: ele?.dir
+                  ? ele?.dir === ('ltr'||'rtl')
+                    ? "ltr"
+                    : "rtl"
+                  : direction,
               }}
               className={`${fromStyle?.column}`}
             >
