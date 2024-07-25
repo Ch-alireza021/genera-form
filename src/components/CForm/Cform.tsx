@@ -1,12 +1,13 @@
-import { ChangeEvent, FC, useEffect, useRef, useState } from "react";
-import { ConfigFormIF, FormCForm, onSubmite, StringObject } from "./base";
+import { FC, useEffect, useRef, useState } from "react";
+import {
+  CformIF,
+  Input,
+  onSubmite,
+  StringObject,
+} from "./base";
 import fromStyle from "./style/ButtonForm.module.css";
 import { gridColumn } from "./helpers";
-interface CformIF {
-  form: FormCForm[];
-  submithandler: (formValues: { [key: string]: string }) => void;
-  config: ConfigFormIF;
-}
+
 
 export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
   const [formValues, setFormValues] = useState<StringObject>({});
@@ -38,11 +39,6 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
         }}
       >
         {form?.map((ele, i) => {
-          const change = (e: ChangeEvent<HTMLInputElement>) => {
-            const value = e.target.value;
-            if (ele?.onChange) ele?.onChange(value);
-            setFormValues((pre) => ({ ...pre, [ele?.name]: value }));
-          };
           const error = formError?.[ele?.name];
           const {
             gridColumnStart,
@@ -78,19 +74,8 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
                   {ele?.label}:
                 </label>
               )}
-              <input
-                id={ele.name}
-                type={ele?.type}
-                placeholder={ele?.placeholder}
-                onChange={(e) => change(e)}
-                style={{
-                  borderColor: formError?.[ele.name] ? "red" : "",
-                  fontSize: `${ele?.fontSize || config?.fontSize || ""}px`,
-                  ...config?.inputStyle,
-                  ...ele?.inputStyle,
-                }}
-                className={`${fromStyle?.input}`}
-              />
+              <Input {...{ ele, formError, config, setFormValues }} />
+
               {error && <div style={{ color: "red" }}>{error}</div>}
             </div>
           );

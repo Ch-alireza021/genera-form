@@ -1,11 +1,12 @@
+// type InputType = 'text' | 'email' | 'password' | 'number';
 export interface FormCForm {
   size?: string;
   name: string;
   type: string;
-  label?:string;
+  label?: string;
   placeholder?: string;
   dir?: string;
-  onChange?: (e: StringObject) => void;
+  onChange?: (e: string) => void;
   error?: {
     regex?: any;
     min?: number;
@@ -14,7 +15,7 @@ export interface FormCForm {
   };
   fontSize?: number;
   inputStyle?: React.CSSProperties;
-  labelStyle?: React.CSSProperties
+  labelStyle?: React.CSSProperties;
 }
 
 export interface StringObject {
@@ -29,4 +30,10 @@ export interface ConfigFormIF {
   inputStyle?: React.CSSProperties;
   labelStyle?: React.CSSProperties;
   // dir?: "ltr" | "rtl" ;
+}
+
+export interface CformIF {
+  form: FormCForm[];
+  submithandler: (formValues: { [key: string]: string }) => void;
+  config: ConfigFormIF;
 }
