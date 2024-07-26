@@ -7,6 +7,7 @@ function App() {
       name: "fname",
       type: "text",
       label: "نام ",
+      // value:'امیرحسین',
       placeholder: "امیر",
       onChange: (e: any) => {
         console.log({ e });
@@ -14,7 +15,7 @@ function App() {
       size: "s12 m6 l4",
       error: { min: 5, max: 10, required: true },
       // fontSize: 30,
-      // inputStyle: { borderRadius: "50px" },
+      // inputStyle: { borderRadius: "50px",borderColor:'blue' },
       // labelStyle: { padding: "20px" }
       // dir:'ltr'
     },
@@ -25,19 +26,23 @@ function App() {
       size: "s12 m6 l4",
       error: { regex: ["^[0-9]{11}$", "شماره موبایل باید 11 رقم باشد"] },
     },
-    // {
-    //   name: "username",
-    //   type: "text", // Make sure this matches InputType
-    //   label: "Username",
-    //   placeholder: "Enter your username",
-    //   onChange: (e) => console.log(e),
-    //   size: "s12 m6 l4",
-    //   error: {
-    //     min: 3,
-    //     max: 20,
-    //     required: true,
-    //   },
-    // },
+    {
+      name: "username",
+      type: "select", // Make sure this matches InputType
+      label: "Username",
+      placeholder: "Enter your username",
+      onChange: (e) => console.log(e),
+      size: "s12 m6 l4",
+      options:[
+        {text:'isSelected',value:'selected'},
+        {text:'isSelected2',value:'selected2'},
+      ]
+      // error: {
+      //   min: 3,
+      //   max: 20,
+      //   required: true,
+      // },
+    },
     // {
     //   name: "email",
     //   type: "email", // Make sure this matches InputType

@@ -16,6 +16,8 @@ export interface FormCForm {
   fontSize?: number;
   inputStyle?: React.CSSProperties;
   labelStyle?: React.CSSProperties;
+  options?: { value: string; text: string }[];
+  value?:string
 }
 
 export interface StringObject {
