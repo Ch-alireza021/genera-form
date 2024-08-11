@@ -7,7 +7,7 @@ interface InputSelectIF {
   formError: StringObject;
   config: ConfigFormIF;
   setFormValues: any;
-  change: (e: ChangeEvent<HTMLInputElement>) => void;
+  change: (e: ChangeEvent<HTMLInputElement|HTMLSelectElement>) => void;
 }
 
 export const InputSelect: FC<InputSelectIF> = ({
@@ -32,7 +32,7 @@ export const InputSelect: FC<InputSelectIF> = ({
       className={`${fromStyle?.input}`}
     >
       {ele?.options?.map((option) => (
-        <option key={option?.value} value={option?.value}>
+        <option key={option?.value} value={option?.value}  >
           {option?.text}
         </option>
       ))}

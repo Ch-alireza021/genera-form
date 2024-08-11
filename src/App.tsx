@@ -31,7 +31,8 @@ function App() {
       type: "select", // Make sure this matches InputType
       label: "Username",
       placeholder: "Enter your username",
-      onChange: (e) => console.log(e),
+      onChange: (e:string) => console.log(e),
+      // inputStyle: { borderRadius: "50px",borderColor:'blue' },
       size: "s12 m6 l4",
       options:[
         {text:'isSelected',value:'selected'},
