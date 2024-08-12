@@ -1,10 +1,12 @@
 // import React from 'react'
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, FC, useContext, useReducer } from "react";
 import fromStyle from "../style/ButtonForm.module.css";
 import { FormCForm, ConfigFormIF, StringObject } from "./interFaceCForm";
 import { InputSelect } from "./InputSelect";
 import { InputSwitch } from "./switch";
 import { CheckBox } from "./checkBox";
+import { Textarea } from "./textarea";
+import { MyContext } from "../helpers";
 
 interface InputIF {
   ele: FormCForm;
@@ -12,25 +14,34 @@ interface InputIF {
   config: ConfigFormIF;
   setFormValues: any;
 }
+type EventChangeElements =
+  | HTMLInputElement
+  | HTMLSelectElement
+  | HTMLTextAreaElement;
+// --------------------------------------------
+//                       Input
 export const Input: FC<InputIF> = ({
   ele,
   formError,
   config,
   setFormValues,
 }) => {
-  const change = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-    type?: string
-  ): void => {
+  const { state, dispatch } = useContext(MyContext);
+  const change = (e: ChangeEvent<EventChangeElements>, type?: string): void => {
     const target = e.target;
     const value =
       target instanceof HTMLInputElement && type === "checked"
         ? target.checked
         : target.value;
     if (ele?.onChange) ele?.onChange(value);
+    dispatch({
+      type: "SET_NAME",
+      payload: { [ele.name]: target.value },
+    });
     setFormValues((pre: StringObject) => ({ ...pre, [ele?.name]: value }));
   };
   const typeEleman = ["text", "number"];
+  console.log({ state });
   return (
     <>
       {typeEleman?.includes(ele?.type) ? (
@@ -54,6 +65,8 @@ export const Input: FC<InputIF> = ({
         <InputSwitch {...{ ele, formError, config, setFormValues, change }} />
       ) : ele?.type === "checkBox" ? (
         <CheckBox {...{ ele, formError, config, setFormValues, change }} />
+      ) : ele?.type === "textarea" ? (
+        <Textarea {...{ ele, formError, config, setFormValues, change }} />
       ) : (
         ""
       )}
