@@ -1,8 +1,8 @@
-// type InputType = 'text' | 'email' | 'password' | 'number';
+type InputType = 'text' | 'email' | 'password' | 'number'|'switch'|'select'|'textArea'|'checkBox';
 export interface FormCForm {
   size?: string;
   name: string;
-  type: string;
+  type: InputType;
   label?: string;
   placeholder?: string;
   dir?: string;
