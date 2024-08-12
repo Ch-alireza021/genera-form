@@ -1,19 +1,14 @@
 import { FC, useEffect, useRef, useState } from "react";
-import {
-  CformIF,
-  Input,
-  onSubmite,
-  StringObject,
-} from "./base";
+import { CformIF, Input, onSubmite, StringObject } from "./base";
 import fromStyle from "./style/ButtonForm.module.css";
 import { gridColumn } from "./helpers";
-
 
 export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
   const [formValues, setFormValues] = useState<StringObject>({});
   const [formError, setFormError] = useState<StringObject>({});
   const [width, setWidth] = useState<number>(0);
   const divRef = useRef<HTMLDivElement | null>(null);
+  const specialType = ["checkBox", "switch"];
   useEffect(() => {
     const updateWidth = () => {
       if (divRef.current) {
@@ -66,7 +61,7 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
               }}
               className={`${fromStyle?.column}`}
             >
-              {ele?.label && (
+              {ele?.label && !specialType?.includes(ele?.type) && (
                 <label
                   style={{ ...config?.labelStyle, ...ele?.labelStyle }}
                   htmlFor={ele.name}

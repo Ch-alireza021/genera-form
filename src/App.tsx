@@ -1,22 +1,23 @@
 import "./App.css";
+import { ConfigFormIF, FormCForm } from "./components/CForm";
 import { CForm } from "./components/CForm/Cform";
 
 function App() {
-  const form = [
+  const form:FormCForm[] = [
     {
       name: "fname",
       type: "text",
       label: "نام ",
       // value:'امیرحسین',
       placeholder: "امیر",
-      onChange: (e: any) => {
+      onChange: (e) => {
         console.log({ e });
       },
       size: "s12 m6 l4",
       error: { min: 5, max: 10, required: true },
       // fontSize: 30,
       // inputStyle: { borderRadius: "50px",borderColor:'blue' },
-      // labelStyle: { padding: "20px" }
+      // labelStyle: { padding: "20px" },
       // dir:'ltr'
     },
     {
@@ -31,6 +32,15 @@ function App() {
       name: 'switch',
       type: "switch",
       size: "s12 m6 l4",
+      onChange: (e) => console.log(e),
+      // error: { regex: ["^[0-9]{11}$", "شماره موبایل باید 11 رقم باشد"] },
+    },
+    {
+      label: "چک باکس ",
+      name: 'checkBox',
+      type: "checkBox",
+      size: "s12 m6 l4",
+      onChange: (e) => console.log(e),
       // error: { regex: ["^[0-9]{11}$", "شماره موبایل باید 11 رقم باشد"] },
     },
     {
@@ -38,7 +48,7 @@ function App() {
       type: "select", // Make sure this matches InputType
       label: "Username",
       placeholder: "Enter your username",
-      onChange: (e:string) => console.log(e),
+      onChange: (e) => console.log(e),
       // inputStyle: { borderRadius: "50px",borderColor:'blue' },
       size: "s12 m6 l4",
       options:[
@@ -67,7 +77,7 @@ function App() {
     // },
   ];
 
-  const config = {
+  const config:ConfigFormIF = {
     btnText: "ثبت",
     btnClass: "btn",
     // dir: "rtl",
