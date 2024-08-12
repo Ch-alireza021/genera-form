@@ -18,9 +18,14 @@ export const Input: FC<InputIF> = ({
   setFormValues,
 }) => {
   const change = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    type?: string
   ): void => {
-    const value = e.target.value;
+    const target = e.target;
+    const value =
+      target instanceof HTMLInputElement && type === "switch"
+        ? target.checked
+        : target.value;
     if (ele?.onChange) ele?.onChange(value);
     setFormValues((pre: StringObject) => ({ ...pre, [ele?.name]: value }));
   };
@@ -42,10 +47,12 @@ export const Input: FC<InputIF> = ({
           }}
           className={`${fromStyle?.input}`}
         />
-      ) : ele?.type==='select' ? (
+      ) : ele?.type === "select" ? (
         <InputSelect {...{ ele, formError, config, setFormValues, change }} />
+      ) : ele?.type === "switch" ? (
+        <InputSwitch {...{ ele, formError, config, setFormValues, change }} />
       ) : (
-        ele?.type==='switch'?<InputSwitch {...{ ele, formError, config, setFormValues, change }} />:''
+        ""
       )}
     </>
   );

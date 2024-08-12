@@ -6,7 +6,7 @@ export interface FormCForm {
   label?: string;
   placeholder?: string;
   dir?: string;
-  onChange?: (e: string) => void;
+  onChange?: (e: string|boolean) => void;
   error?: {
     regex?: any;
     min?: number;

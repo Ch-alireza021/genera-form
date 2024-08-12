@@ -19,7 +19,7 @@ export const InputSwitch: FC<InputSwitchIF> = ({
   return (
     <div>
       <label className={switchClass.switch}>
-        <input type="checkbox" />
+        <input type="checkbox"  id={ele.name} onChange={(e) =>{ change(e);console.log('{e}',e.target.checked)} } />
         <span className={switchClass.slider}></span>
       </label>
     </div>
