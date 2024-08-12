@@ -1,14 +1,14 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { CformIF, Input, onSubmite, StringObject } from "./base";
 import fromStyle from "./style/ButtonForm.module.css";
-import { gridColumn } from "./helpers";
+import { gridColumn, MyContextProvider } from "./helpers";
 
 export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
   const [formValues, setFormValues] = useState<StringObject>({});
   const [formError, setFormError] = useState<StringObject>({});
   const [width, setWidth] = useState<number>(0);
   const divRef = useRef<HTMLDivElement | null>(null);
-  const specialType = ["checkBox", "switch"];
+  const specialType = ["checkBox", "switch","textarea"];
   useEffect(() => {
     const updateWidth = () => {
       if (divRef.current) {
@@ -24,7 +24,7 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
   let column = 1;
   const direction = config?.dir === "ltr" ? "ltr" : "rtl";
   return (
-    <>
+    <MyContextProvider>
       <div
         className={`${fromStyle?.grid}`}
         ref={divRef}
@@ -69,6 +69,7 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
                   {ele?.label}:
                 </label>
               )}
+
               <Input {...{ ele, formError, config, setFormValues }} />
 
               {error && <div style={{ color: "red" }}>{error}</div>}
@@ -92,6 +93,6 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
       >
         {config?.btnText}
       </button>
-    </>
+    </MyContextProvider>
   );
 };

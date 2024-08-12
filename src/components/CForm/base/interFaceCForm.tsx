@@ -1,4 +1,6 @@
-type InputType = 'text' | 'email' | 'password' | 'number'|'switch'|'select'|'textArea'|'checkBox';
+import { ReactNode } from "react";
+
+type InputType = 'text' | 'email' | 'password' | 'number'|'switch'|'select'|'textarea'|'checkBox';
 export interface FormCForm {
   size?: string;
   name: string;
@@ -38,4 +40,17 @@ export interface CformIF {
   form: FormCForm[];
   submithandler: (formValues: { [key: string]: string }) => void;
   config: ConfigFormIF;
+}
+
+export interface SBObjectIF {
+  [key: string]: string | boolean;
+}
+
+export interface MyContextAction {
+  type: string;
+  payload: SBObjectIF;
+}
+
+export interface MyContextProviderIF {
+  children: ReactNode;
 }
