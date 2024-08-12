@@ -4,6 +4,7 @@ import fromStyle from "../style/ButtonForm.module.css";
 import { FormCForm, ConfigFormIF, StringObject } from "./interFaceCForm";
 import { InputSelect } from "./InputSelect";
 import { InputSwitch } from "./switch";
+import { CheckBox } from "./checkBox";
 
 interface InputIF {
   ele: FormCForm;
@@ -23,7 +24,7 @@ export const Input: FC<InputIF> = ({
   ): void => {
     const target = e.target;
     const value =
-      target instanceof HTMLInputElement && type === "switch"
+      target instanceof HTMLInputElement && type === "checked"
         ? target.checked
         : target.value;
     if (ele?.onChange) ele?.onChange(value);
@@ -51,6 +52,8 @@ export const Input: FC<InputIF> = ({
         <InputSelect {...{ ele, formError, config, setFormValues, change }} />
       ) : ele?.type === "switch" ? (
         <InputSwitch {...{ ele, formError, config, setFormValues, change }} />
+      ) : ele?.type === "checkBox" ? (
+        <CheckBox {...{ ele, formError, config, setFormValues, change }} />
       ) : (
         ""
       )}
