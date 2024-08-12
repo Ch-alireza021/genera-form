@@ -3,6 +3,8 @@ import { ChangeEvent, FC } from "react";
 import fromStyle from "../style/ButtonForm.module.css";
 import { FormCForm, ConfigFormIF, StringObject } from "./interFaceCForm";
 import { InputSelect } from "./InputSelect";
+import { InputSwitch } from "./switch";
+
 interface InputIF {
   ele: FormCForm;
   formError: StringObject;
@@ -15,7 +17,9 @@ export const Input: FC<InputIF> = ({
   config,
   setFormValues,
 }) => {
-  const change = (e: ChangeEvent<HTMLInputElement>): void => {
+  const change = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ): void => {
     const value = e.target.value;
     if (ele?.onChange) ele?.onChange(value);
     setFormValues((pre: StringObject) => ({ ...pre, [ele?.name]: value }));
@@ -38,10 +42,10 @@ export const Input: FC<InputIF> = ({
           }}
           className={`${fromStyle?.input}`}
         />
-      ) : ele?.type ? (
+      ) : ele?.type==='select' ? (
         <InputSelect {...{ ele, formError, config, setFormValues, change }} />
       ) : (
-        ""
+        ele?.type==='switch'?<InputSwitch {...{ ele, formError, config, setFormValues, change }} />:''
       )}
     </>
   );

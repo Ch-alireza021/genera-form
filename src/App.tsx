@@ -27,6 +27,13 @@ function App() {
       error: { regex: ["^[0-9]{11}$", "شماره موبایل باید 11 رقم باشد"] },
     },
     {
+      label: "نام ",
+      name: 'switch',
+      type: "switch",
+      size: "s12 m6 l4",
+      // error: { regex: ["^[0-9]{11}$", "شماره موبایل باید 11 رقم باشد"] },
+    },
+    {
       name: "username",
       type: "select", // Make sure this matches InputType
       label: "Username",
