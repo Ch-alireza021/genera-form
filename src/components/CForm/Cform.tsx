@@ -1,5 +1,13 @@
-import { FC, useEffect, useRef, useState } from "react";
-import { CformIF, Input, onSubmite, StringObject } from "./base";
+import { FC, useContext, useEffect, useRef, useState } from "react";
+import {
+  CformIF,
+  Input,
+  onSubmite,
+  ShowError,
+  ShowLable,
+  StringObject,
+  Submit,
+} from "./base";
 import fromStyle from "./style/ButtonForm.module.css";
 import { gridColumn, MyContextProvider } from "./helpers";
 
@@ -8,7 +16,7 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
   const [formError, setFormError] = useState<StringObject>({});
   const [width, setWidth] = useState<number>(0);
   const divRef = useRef<HTMLDivElement | null>(null);
-  const specialType = ["checkBox", "switch","textarea"];
+  // const specialType = ["checkBox", "switch", "textarea"];
   useEffect(() => {
     const updateWidth = () => {
       if (divRef.current) {
@@ -34,7 +42,6 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
         }}
       >
         {form?.map((ele, i) => {
-          const error = formError?.[ele?.name];
           const {
             gridColumnStart,
             gridColumnEnd,
@@ -61,23 +68,14 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
               }}
               className={`${fromStyle?.column}`}
             >
-              {ele?.label && !specialType?.includes(ele?.type) && (
-                <label
-                  style={{ ...config?.labelStyle, ...ele?.labelStyle }}
-                  htmlFor={ele.name}
-                >
-                  {ele?.label}:
-                </label>
-              )}
-
+              <ShowLable {...{ ele, config }} />
               <Input {...{ ele, formError, config, setFormValues }} />
-
-              {error && <div style={{ color: "red" }}>{error}</div>}
+              <ShowError {...{ele}} />
             </div>
           );
         })}
       </div>
-      <button
+      {/* <button
         type="button"
         className={`${fromStyle.button} ${config?.btnClass}`}
         // style={ { config?.btnStyle ? ...config?.btnStyle : "" } }
@@ -88,11 +86,23 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
             formError,
             setFormError,
             formValues,
+            state,
+            dispatch
           })
         }
       >
         {config?.btnText}
-      </button>
+      </button> */}
+      <Submit
+        {...{
+          form,
+          submithandler,
+          formError,
+          setFormError,
+          formValues,
+          config,
+        }}
+      />
     </MyContextProvider>
   );
 };

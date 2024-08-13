@@ -25,7 +25,7 @@ function App() {
       name: 'phone',
       type: "number",
       size: "s12 m6 l4",
-      error: { regex: ["^[0-9]{11}$", "شماره موبایل باید 11 رقم باشد"] },
+      error: { required: true, regex: ["^[0-9]{11}$", "شماره موبایل باید 11 رقم باشد"] },
     },
     {
       label: "نام ",
