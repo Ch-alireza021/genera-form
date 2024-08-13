@@ -1,22 +1,16 @@
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, FC, useContext } from "react";
 import { FormCForm, StringObject, ConfigFormIF } from "./interFaceCForm";
 import fromStyle from "../style/ButtonForm.module.css";
+import { MyContext } from "../helpers";
 // import React from 'react'
 interface InputSelectIF {
   ele: FormCForm;
-  formError: StringObject;
   config: ConfigFormIF;
-  setFormValues: any;
-  change: (e: ChangeEvent<HTMLInputElement|HTMLSelectElement>) => void;
+  change: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
 }
 
-export const InputSelect: FC<InputSelectIF> = ({
-  ele,
-  formError,
-  config,
-  setFormValues,
-  change,
-}) => {
+export const InputSelect: FC<InputSelectIF> = ({ ele, config, change }) => {
+  const { state } = useContext(MyContext);
   return (
     <select
       id={ele.name}
@@ -24,7 +18,7 @@ export const InputSelect: FC<InputSelectIF> = ({
       // placeholder={ele?.placeholder}
       onChange={(e) => change(e)}
       style={{
-        borderColor: formError?.[ele.name] ? "red" : "",
+        borderColor: state?.error?.[ele.name] ? "red" : "",
         fontSize: `${ele?.fontSize || config?.fontSize || ""}px`,
         ...config?.inputStyle,
         ...ele?.inputStyle,
@@ -32,7 +26,7 @@ export const InputSelect: FC<InputSelectIF> = ({
       className={`${fromStyle?.input}`}
     >
       {ele?.options?.map((option) => (
-        <option key={option?.value} value={option?.value}  >
+        <option key={option?.value} value={option?.value}>
           {option?.text}
         </option>
       ))}
