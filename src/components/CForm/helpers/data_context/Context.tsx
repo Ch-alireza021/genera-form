@@ -1,15 +1,18 @@
 import React, { Dispatch, FC, useReducer } from "react";
-import { SBObjectIF, MyContextAction, MyContextProviderIF } from "../../base";
+import {MyContextAction, MyContextProviderIF, FormInitialStateIF } from "../../base";
 import { reducer } from "./reducer";
 
+const formInitialState = {
+  formValues: {},
+  error: {},
+};
 export const MyContext = React.createContext<{
-  state: SBObjectIF;
+  state: FormInitialStateIF;
   dispatch: Dispatch<MyContextAction>;
-}>({ state: {}, dispatch: () => null });
+}>({ state: formInitialState, dispatch: () => null });
 
 export const MyContextProvider: FC<MyContextProviderIF> = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, {});
-
+  const [state, dispatch] = useReducer(reducer,formInitialState);
   return (
     <MyContext.Provider value={{ state, dispatch }}>
       {children}
