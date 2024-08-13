@@ -1,5 +1,5 @@
 import "./App.css";
-import { ConfigFormIF, FormCForm, SBObjectIF, SubmithandlerIF, SubmitIF } from "./components/CForm";
+import { ConfigFormIF, FormCForm, SBObjectIF} from "./components/CForm";
 import { CForm } from "./components/CForm/Cform";
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
       label: "نام ",
       // value:'امیرحسین',
       placeholder: "امیر",
+      value:'حسین',
       onChange: (e) => {
         console.log({ e });
       },
@@ -29,17 +30,43 @@ function App() {
     },
     {
       label: "نام ",
+      name: 'phone',
+      type: "date",
+      size: "s12 m6 l4",
+      error: { required: true, regex: ["^[0-9]{11}$", "شماره موبایل باید 11 رقم باشد"] },
+      inputStyle: { borderRadius: "50px",borderColor:'blue' },
+    },
+    {
+      label: "نام ",
       name: 'switch',
       type: "switch",
-      size: "s12 m6 l4",
+      size: "s12 m6 l1",
       onChange: (e) => console.log(e),
+      checked:true,
       // error: { regex: ["^[0-9]{11}$", "شماره موبایل باید 11 رقم باشد"] },
     },
     {
       label: "چک باکس ",
       name: 'checkBox',
       type: "checkBox",
-      size: "s12 m6 l4",
+      size: "s12 m6 l1",
+      onChange: (e) => console.log(e),
+      checked:true,
+      // error: { regex: ["^[0-9]{11}$", "شماره موبایل باید 11 رقم باشد"] },
+    },
+    {
+      label: "چک باکس ",
+      name: 'checkBox1',
+      type: "checkBox",
+      size: "s12 m6 l1",
+      onChange: (e) => console.log(e),
+      // error: { regex: ["^[0-9]{11}$", "شماره موبایل باید 11 رقم باشد"] },
+    },
+    {
+      label: "چک باکس ",
+      name: 'checkBox3',
+      type: "checkBox",
+      size: "s12 m6 l1",
       onChange: (e) => console.log(e),
       // error: { regex: ["^[0-9]{11}$", "شماره موبایل باید 11 رقم باشد"] },
     },

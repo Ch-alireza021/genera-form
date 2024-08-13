@@ -32,7 +32,7 @@ export const Input: FC<InputIF> = ({ ele, config }) => {
       payload: { [ele.name]: value },
     });
   };
-  const typeEleman = ["text", "number"];
+  const typeEleman = ["text", "number",'date'];
   return (
     <>
       {typeEleman?.includes(ele?.type) ? (

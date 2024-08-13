@@ -1,5 +1,5 @@
 // import React from "react";
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import switchClass from "./switch.module.css";
 import { ConfigFormIF, FormCForm } from "../interFaceCForm";
 interface InputSwitchIF {
@@ -8,11 +8,14 @@ interface InputSwitchIF {
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
     type: "checked"
   ) => void;
-  config:ConfigFormIF
+  config: ConfigFormIF;
 }
-export const InputSwitch: FC<InputSwitchIF> = ({ ele, change,config}) => {
+export const InputSwitch: FC<InputSwitchIF> = ({ ele, change, config }) => {
+  const [isChecked, setIsChecked] = useState<boolean>(
+    typeof ele.checked === "boolean" ? ele.checked : false
+  );
   return (
-    <div style={{ display: "flex", alignItems: "center",gap:'1rem' }}>
+    <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
       {ele?.label && (
         <label
           style={{ ...config?.labelStyle, ...ele?.labelStyle }}
@@ -28,7 +31,9 @@ export const InputSwitch: FC<InputSwitchIF> = ({ ele, change,config}) => {
             id={ele.name}
             onChange={(e) => {
               change(e, "checked");
+              setIsChecked(!isChecked);
             }}
+            checked={isChecked}
           />
           <span className={switchClass.slider}></span>
         </label>

@@ -8,6 +8,7 @@ type InputType =
   | "switch"
   | "select"
   | "textarea"
+  | "date"
   | "checkBox";
 export interface FormCForm {
   size?: string;
@@ -28,6 +29,7 @@ export interface FormCForm {
   labelStyle?: React.CSSProperties;
   options?: { value: string; text: string }[];
   value?: string;
+  checked?:boolean
 }
 
 export interface StringObject {
