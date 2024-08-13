@@ -1,19 +1,15 @@
-import { FC, useContext, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import {
-  CformIF,
+  CFormIF,
   Input,
-  onSubmite,
   ShowError,
   ShowLable,
-  StringObject,
   Submit,
 } from "./base";
 import fromStyle from "./style/ButtonForm.module.css";
 import { gridColumn, MyContextProvider } from "./helpers";
 
-export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
-  const [formValues, setFormValues] = useState<StringObject>({});
-  const [formError, setFormError] = useState<StringObject>({});
+export const CForm: FC<CFormIF> = ({ form, submithandler, config }) => {
   const [width, setWidth] = useState<number>(0);
   const divRef = useRef<HTMLDivElement | null>(null);
   // const specialType = ["checkBox", "switch", "textarea"];
@@ -69,37 +65,16 @@ export const CForm: FC<CformIF> = ({ form, submithandler, config }) => {
               className={`${fromStyle?.column}`}
             >
               <ShowLable {...{ ele, config }} />
-              <Input {...{ ele, formError, config, setFormValues }} />
+              <Input {...{ ele, config }} />
               <ShowError {...{ele}} />
             </div>
           );
         })}
       </div>
-      {/* <button
-        type="button"
-        className={`${fromStyle.button} ${config?.btnClass}`}
-        // style={ { config?.btnStyle ? ...config?.btnStyle : "" } }
-        onClick={() =>
-          onSubmite({
-            form,
-            submithandler,
-            formError,
-            setFormError,
-            formValues,
-            state,
-            dispatch
-          })
-        }
-      >
-        {config?.btnText}
-      </button> */}
       <Submit
         {...{
           form,
           submithandler,
-          formError,
-          setFormError,
-          formValues,
           config,
         }}
       />

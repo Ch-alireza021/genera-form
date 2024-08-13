@@ -44,9 +44,11 @@ export interface ConfigFormIF {
   // dir?: "ltr" | "rtl" ;
 }
 
-export interface CformIF {
+export type SubmithandlerIF = (arg0: SBObjectIF) => void;
+
+export interface CFormIF {
   form: FormCForm[];
-  submithandler: (formValues: { [key: string]: string }) => void;
+  submithandler: SubmithandlerIF;
   config: ConfigFormIF;
 }
 
@@ -67,7 +69,6 @@ export interface FormInitialStateIF {
   formValues: SBObjectIF;
   error: SBObjectIF;
 }
-export type SubmithandlerIF = (arg0: SBObjectIF) => void;
 
 export interface SubmitIF {
   form: FormCForm[];

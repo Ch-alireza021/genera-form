@@ -1,5 +1,5 @@
 import "./App.css";
-import { ConfigFormIF, FormCForm } from "./components/CForm";
+import { ConfigFormIF, FormCForm, SBObjectIF, SubmithandlerIF, SubmitIF } from "./components/CForm";
 import { CForm } from "./components/CForm/Cform";
 
 function App() {
@@ -95,7 +95,7 @@ function App() {
     // fontSize: 30,
   };
 
-  const submithandler = (formValues: { [key: string]: string }) => {
+  const submithandler= (formValues:SBObjectIF) :void=> {
     console.log({ formValues });
   };
 

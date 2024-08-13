@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, useContext } from "react";
-import { FormCForm, StringObject, ConfigFormIF } from "./interFaceCForm";
+import { FormCForm, ConfigFormIF } from "./interFaceCForm";
 import fromStyle from "../style/ButtonForm.module.css";
 import { MyContext } from "../helpers";
 // import React from 'react'
