@@ -14,7 +14,7 @@ export const ShowLable:FC<ShowLableIF> = ({ ele, config }) => {
           style={{ ...config?.labelStyle, ...ele?.labelStyle }}
           htmlFor={ele.name}
         >
-          {ele?.label}:
+          {ele?.label}
         </label>
       )}
     </>
