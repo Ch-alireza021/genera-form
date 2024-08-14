@@ -12,11 +12,12 @@ export const Submit: FC<SubmitIF> = ({ form, submithandler, config }) => {
     <button
       type="button"
       className={`${fromStyle.button} ${config?.btnClass}`}
-      // style={ { config?.btnStyle ? ...config?.btnStyle : "" } }
+      style={config?.btnStyle ? { ...config.btnStyle } : {}}
       onClick={() => {
         form?.forEach((item) => {
           if (item?.error) {
             const er = item?.error;
+            const formVAlues = state.formValues;
             const elem = state?.formValues?.[item?.name];
             if (er.required) {
               switch (elem) {
@@ -31,6 +32,21 @@ export const Submit: FC<SubmitIF> = ({ form, submithandler, config }) => {
                   });
               }
             }
+
+            if (
+              formVAlues?.setpassword !== formVAlues?.setpasswordConfirm &&
+              item.type === "passwordConfirm"
+            ) {
+              useDispatch("ERROR", {
+                [item?.name]: `تکرار رمز با رمز عبور مطابقت ندارد`,
+              });
+              return;
+            } else {
+              useDispatch("DELETE_ERROR", {
+                delete: item?.name,
+              });
+            }
+
             if (er?.min) {
               if (typeof elem === "string" && elem?.length < er.min) {
                 useDispatch("ERROR", {
