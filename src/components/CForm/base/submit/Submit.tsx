@@ -34,7 +34,8 @@ export const Submit: FC<SubmitIF> = ({ form, submithandler, config }) => {
             }
 
             if (
-              formVAlues?.setpassword !== formVAlues?.setpasswordConfirm &&
+              formVAlues?.[(formVAlues?.setpassword).toString()] !==
+                formVAlues?.[formVAlues?.setpasswordConfirm.toString()] &&
               item.type === "passwordConfirm"
             ) {
               useDispatch("ERROR", {
