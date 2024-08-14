@@ -4,6 +4,7 @@ type InputType =
   | "text"
   | "email"
   | "password"
+  | "passwordConfirm"
   | "number"
   | "switch"
   | "select"
@@ -29,7 +30,7 @@ export interface FormCForm {
   labelStyle?: React.CSSProperties;
   options?: { value: string; text: string }[];
   value?: string;
-  checked?:boolean
+  checked?: boolean;
 }
 
 export interface StringObject {
@@ -38,7 +39,7 @@ export interface StringObject {
 export interface ConfigFormIF {
   btnText?: string;
   btnClass?: string;
-  btnStyle?: any;
+  btnStyle?: React.CSSProperties;
   dir?: string;
   fontSize?: number;
   inputStyle?: React.CSSProperties;
@@ -79,12 +80,25 @@ export interface SubmitIF {
 }
 export interface InputTNIF {
   ele: FormCForm;
-  change: (e: ChangeEvent<HTMLInputElement>) => void;
+  change: (
+    e: ChangeEvent<HTMLInputElement>,
+  ) => void;
+  config: ConfigFormIF;
+}
+export interface PasswordIF {
+  ele: FormCForm;
+  change: (
+    e: ChangeEvent<HTMLInputElement>,
+    type?: "password" | "passwordConfirm"
+  ) => void;
   config: ConfigFormIF;
 }
 
 export interface CheckBoxIF {
   ele: FormCForm;
-  change: (e: ChangeEvent<HTMLInputElement>, type: "checked") => void;
+  change: (
+    e: ChangeEvent<HTMLInputElement>,
+    type: "checked" | "password" | "passwordConfirm"
+  ) => void;
   config: ConfigFormIF;
 }
