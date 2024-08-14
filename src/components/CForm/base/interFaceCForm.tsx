@@ -10,6 +10,7 @@ type InputType =
   | "select"
   | "textarea"
   | "date"
+  | "tel"
   | "checkBox";
 export interface FormCForm {
   size?: string;

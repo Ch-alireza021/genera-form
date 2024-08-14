@@ -14,10 +14,10 @@ export const InputTN: FC<InputTNIF> = ({ ele, change, config }) => {
       placeholder={ele?.placeholder}
       onChange={(e) => change(e)}
       style={{
-        borderColor: state?.error?.[ele.name] ? "red" : "",
         fontSize: `${ele?.fontSize || config?.fontSize || ""}px`,
         ...config?.inputStyle,
         ...ele?.inputStyle,
+        borderColor: state?.error?.[ele.name] ? "red" : "",
       }}
       className={`${formStyle?.input}`}
     />
