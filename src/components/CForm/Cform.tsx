@@ -1,18 +1,11 @@
 import { FC, useEffect, useRef, useState } from "react";
-import {
-  CFormIF,
-  Input,
-  ShowError,
-  ShowLable,
-  Submit,
-} from "./base";
+import { CFormIF, Input, ShowError, ShowLable, Submit } from "./base";
 import fromStyle from "./style/ButtonForm.module.css";
 import { gridColumn, MyContextProvider } from "./helpers";
 
 export const CForm: FC<CFormIF> = ({ form, submithandler, config }) => {
   const [width, setWidth] = useState<number>(0);
   const divRef = useRef<HTMLDivElement | null>(null);
-  // const specialType = ["checkBox", "switch", "textarea"];
   useEffect(() => {
     const updateWidth = () => {
       if (divRef.current) {
@@ -64,9 +57,17 @@ export const CForm: FC<CFormIF> = ({ form, submithandler, config }) => {
               }}
               className={`${fromStyle?.column}`}
             >
-              <ShowLable {...{ ele, config }} />
-              <Input {...{ ele, config }} />
-              <ShowError {...{ele}} />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: ".5rem",
+                }}
+              >
+                <ShowLable {...{ ele, config }} />
+                <Input {...{ ele, config }} />
+                <ShowError {...{ ele }} />
+              </div>
             </div>
           );
         })}
