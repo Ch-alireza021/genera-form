@@ -7,6 +7,7 @@ import { CheckBox } from "./checkBox";
 import { Textarea } from "./textarea";
 import { MyContext } from "../helpers";
 import { InputTN } from "./input_text_number";
+import { PasswordInput } from "./password";
 
 interface InputIF {
   ele: FormCForm;
@@ -27,18 +28,23 @@ export const Input: FC<InputIF> = ({ ele, config }) => {
         ? target.checked
         : target.value;
     if (ele?.onChange) ele?.onChange(value);
+
     dispatch({
       type: "FORMINPUT",
-      payload: { [ele.name]: value },
+      payload: type?.includes("password")
+        ? { [ele.name]: value, [`set${ele.type}`]: ele.name }
+        : { [ele.name]: value },
     });
   };
-  const typeEleman = ["text", "number",'date'];
+  const typeEleman = ["text", "number", "date",'email','tel'];
   return (
     <>
       {typeEleman?.includes(ele?.type) ? (
         <InputTN {...{ ele, change, config }} />
       ) : ele?.type === "select" ? (
         <InputSelect {...{ ele, config, change }} />
+      ) : ["password", "passwordConfirm"]?.includes(ele?.type) ? (
+        <PasswordInput {...{ ele, config, change }} />
       ) : ele?.type === "switch" ? (
         <InputSwitch {...{ ele, config, change }} />
       ) : ele?.type === "checkBox" ? (
